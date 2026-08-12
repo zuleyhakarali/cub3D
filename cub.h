@@ -1,6 +1,8 @@
 #ifndef CUB
 #define CUB
 
+#include "libft/libft.h"
+#include "get_next_line/get_next_line.h"
 #include <fcntl.h>     // open
 #include <unistd.h>    // close, read, write
 #include <stdio.h>     // printf, perror
@@ -28,13 +30,18 @@ typedef struct s_cub
 		double	x_plane; // kamera düzlemi x
 		double	y_plane; // kamera düzlemi y
 		int		height; //yükseklik
+		int		f_height; //harita toplam uzunluğu
 		int		width; //genişlik
 		int		floor; //taban renk
 		int		ceil; ///tavan renk
+		char	*f;
+		char	*c;
 		char	*no;
 		char	*so;
 		char	*we;
 		char	*ea;
+		int		fd;
+		char	player;
 }       t_cub;
 
 typedef struct s_img
@@ -57,6 +64,9 @@ typedef struct s_mlx
 }		t_mlx;
 
 int main(int ac, char **av);
-
+void	is_cub_valid(t_cub *game);
+void    error(char *m, int i, t_cub *game);
+void check_the_top(t_cub *game);
+void for_free(char **s);
 
 #endif

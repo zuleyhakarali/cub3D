@@ -1,8 +1,10 @@
 NAME = cub3D
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -Iminilibx-linux
+CFLAGS = -Wall -Wextra -Werror -Iminilibx-linux -g #-g yi sil
 
-SRC = main.c
+SRC = main.c\
+	parser/is_valid.c\
+	parser/fir_check.c
 
 
 OBJS = $(SRC:.c=.o)
