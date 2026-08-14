@@ -17,7 +17,7 @@ static void	fill(char **tmp, int y, int x, t_cub *g)
 	fill(tmp, y, x + 1, g);
 }
 
-void	flood(t_cub *game)
+static void	flood(t_cub *game)
 {
 	char	**tmp;
 	int		i;
@@ -65,10 +65,10 @@ static void	check_valid_chars(t_cub *game, int i, int *p)
 	}
 }
 
-void find_height(t_cub *game)
+static void	find_height(t_cub *game)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (game->cub[i])

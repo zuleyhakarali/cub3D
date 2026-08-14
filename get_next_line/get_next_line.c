@@ -84,4 +84,4 @@ char	*get_next_line(int fd)
 	free(rest);
 	rest = NULL;
 	return (NULL);
-}	
+}
