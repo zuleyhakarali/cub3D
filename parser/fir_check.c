@@ -1,6 +1,6 @@
 #include "../cub.h"
 
-static void	check_int_sec(char **s1, char **s2, t_cub *game)
+static void	check_int_sec(char **s2, t_cub *game)
 {
 	int	i;
 	int	j;
@@ -19,7 +19,7 @@ static void	check_int_sec(char **s1, char **s2, t_cub *game)
 	}
 }
 
-static void	check_int(char **s1, char **s2, t_cub *game)
+void	check_int(char **s1, char **s2, t_cub *game)
 {
 	int	i;
 	int	j;
@@ -36,7 +36,7 @@ static void	check_int(char **s1, char **s2, t_cub *game)
 		}
 		i++;
 	}
-	check_int_sec(s1, s2, game);
+	check_int_sec(s2, game);
 }
 
 static void	check_f_c_num(t_cub *game)

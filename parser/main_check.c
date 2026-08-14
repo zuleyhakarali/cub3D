@@ -54,11 +54,11 @@ static void	reading(char **av, int size, t_cub *game)
 			for_placement(i, &size, game);
 		game->cub[i++] = line;
 	}
-	if (i == 0)
-		error("There is no map.", 0, game);
 	game->cub[i] = NULL;
 	game->f_height = i;
 	close(fd);
+	if (i == 0)
+		error("There is no map.", 1, game);
 }
 
 void	for_fir_check(int ac, char **av, t_cub *game)

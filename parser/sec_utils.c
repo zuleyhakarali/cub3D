@@ -25,9 +25,9 @@ void	check_the_texture(t_cub *game)
 	int	i;
 
 	i = 0;
+	check_text_nums(game);
 	while (game->cub[i])
 	{
-		check_text_nums(game);
 		if (ft_strncmp(game->cub[i], "NO ", 3) == 0)
 			game->no = open_text(game->cub[i]);
 		else if (ft_strncmp(game->cub[i], "SO ", 3) == 0)

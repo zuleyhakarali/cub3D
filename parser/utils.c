@@ -1,9 +1,14 @@
-#include "cub.h"
+#include "../cub.h"
 
 void	error(char *m, int i, t_cub *game)
 {
 	write(2, "Error\n", 6);
 	ft_putendl_fd(m, 2);
+	if (i == 1)
+	{
+		free(game->cub);
+		game->cub = NULL;
+	}
 	if (i == 2)
 		for_free(game->cub);
 	if (game->so)
@@ -75,4 +80,5 @@ void	check_rgb(t_cub *game, char **s1, char **s2)
 		error("Floor's RGB values are incorrect.", 2, game);
 	}
 	game->floor = (fir << 16) | (sec << 8) | thi;
+	check_sec_rgb(game, s1, s2);
 }

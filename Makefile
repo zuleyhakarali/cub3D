@@ -4,7 +4,10 @@ CFLAGS = -Wall -Wextra -Werror -Iminilibx-linux -g #-g yi sil
 
 SRC = main.c\
 	parser/is_valid.c\
-	parser/fir_check.c
+	parser/fir_check.c\
+	parser/main_check.c\
+	parser/sec_utils.c\
+	parser/utils.c
 
 
 OBJS = $(SRC:.c=.o)

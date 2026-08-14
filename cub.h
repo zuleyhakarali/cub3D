@@ -76,5 +76,6 @@ void	check_text_nums(t_cub *game);
 void	check_rgb(t_cub *game, char **s1, char **s2);
 void	check_the_texture(t_cub *game);
 int		ft_iswanted(char *s);
+void	check_int(char **s1, char **s2, t_cub *game);
 
 #endif

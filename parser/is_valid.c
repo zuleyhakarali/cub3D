@@ -76,7 +76,8 @@ static void	find_height(t_cub *game)
 		j = 0;
 		while (game->cub[i][j] && game->cub[i][j] == ' ')
 			j++;
-		if (game->cub[i][j] == '1')
+		if (game->cub[i][j] == '1' || game->cub[i][j] == '0'
+			|| game->cub[i][j] == ' ')
 		{
 			while (game->cub[i])
 			{

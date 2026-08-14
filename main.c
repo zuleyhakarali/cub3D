@@ -24,6 +24,6 @@ int	main(int ac, char **av)
 		return (1);
 	for_fir_check(ac, av, game);
 	is_cub_valid(game);
-	//raycasting
+	printf("raycasting\n");   //raycasting
 	reg_exit(game);
 }
