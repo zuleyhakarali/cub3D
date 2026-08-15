@@ -1,0 +1,1 @@
+//her sütun için ray yönü hesabı

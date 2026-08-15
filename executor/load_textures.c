@@ -1,0 +1,1 @@
+//4 texture'ı xpm'den yükleme

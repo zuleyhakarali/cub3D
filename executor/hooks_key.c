@@ -1,0 +1,1 @@
+//tuş basma/bırakma, ESC, pencere kapatma

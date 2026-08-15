@@ -1,0 +1,1 @@
+//duvar şeridini texture ile çizme

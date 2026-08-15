@@ -1,0 +1,1 @@
+//mlx_init, pencere, screen buffer image

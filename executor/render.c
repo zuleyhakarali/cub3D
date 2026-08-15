@@ -1,0 +1,1 @@
+//frame döngüsü, floor/ceil boyama, put_image

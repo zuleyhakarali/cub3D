@@ -20,6 +20,26 @@ typedef enum e_tex // Doku dizisinin indeks isimleri
 	EA_t = 3
 }	t_tex;
 
+typedef struct s_img
+{
+	void	*img;
+	char	*pix_ptr;
+	int		bits_per_pix;
+	int		line_l;
+	int		endian;
+	int		wid;
+	int		heig;
+}	t_img;
+
+
+typedef struct s_mlx
+{
+	void	*mlx;
+	void	*window;
+	t_img	screen_b;
+	t_img	textures[4];
+}	t_mlx;
+
 typedef struct s_cub
 {
 	char	**cub; //harita
@@ -44,26 +64,9 @@ typedef struct s_cub
 	char	*ea;
 	int		fd;
 	char	player;
+	t_mlx	*mlx;
 }	t_cub;
 
-typedef struct s_img
-{
-	void	*img;
-	char	*pix_ptr;
-	int		bits_per_pix;
-	int		line_l;
-	int		endian;
-	int		wid;
-	int		heig;
-}	t_img;
-
-typedef struct s_mlx
-{
-	void	*mlx;
-	void	*window;
-	t_img	screen_b;
-	t_img	textures[4];
-}	t_mlx;
 
 int		main(int ac, char **av);
 void	is_cub_valid(t_cub *game);
@@ -77,5 +80,6 @@ void	check_rgb(t_cub *game, char **s1, char **s2);
 void	check_the_texture(t_cub *game);
 int		ft_iswanted(char *s);
 void	check_int(char **s1, char **s2, t_cub *game);
+
 
 #endif

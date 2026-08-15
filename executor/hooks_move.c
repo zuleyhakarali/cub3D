@@ -1,0 +1,1 @@
+//hareket + rotasyon + çarpışma kontrolü

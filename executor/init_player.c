@@ -1,0 +1,1 @@
+//player yön vektörleri (x_dir,y_dir,plane)
