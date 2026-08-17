@@ -12,6 +12,11 @@
 # include <math.h>      // Matematik kütüphanesi fonksiyonları (-lm)
 # include <mlx.h>       // MiniLibX grafik kütüphanesi
 
+# define WIN_WIDTH   1280  //pencere yüksekliği
+# define WIN_HEIGHT  720   //pencere genişliği
+# define MOVE_SPEED  0.05  // oyuncu hızı
+# define ROT_SPEED   0.03  // oyuncu rotasyon speed
+
 typedef enum e_tex // Doku dizisinin indeks isimleri
 {
 	NO_t = 0,
@@ -82,4 +87,11 @@ int		ft_iswanted(char *s);
 void	check_int(char **s1, char **s2, t_cub *game);
 
 
+
+//executor
+
+void	init_mlx(t_cub *game);
+void	init_screen_buffer(t_cub *game);
+
+void	clean_mlx(t_cub *game);
 #endif

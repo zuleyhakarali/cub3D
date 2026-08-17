@@ -1,7 +1,8 @@
-#include "cub.h"
+#include "../cub.h"
 
 static void	reg_exit(t_cub *game)
 {
+	clean_mlx(game);
 	for_free(game->cub);
 	if (game->so)
 		free(game->so);
@@ -24,6 +25,8 @@ int	main(int ac, char **av)
 		return (1);
 	for_fir_check(ac, av, game);
 	is_cub_valid(game);
-	printf("raycasting\n");   //raycasting
+	init_mlx(game);
+	mlx_put_image_to_window(game->mlx->mlx, game->mlx->window, game->mlx->screen_b.img, WIN_WIDTH, WIN_HEIGHT);
+	mlx_loop(game->mlx->mlx);
 	reg_exit(game);
 }

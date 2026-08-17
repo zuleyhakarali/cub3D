@@ -4,6 +4,8 @@ void	error(char *m, int i, t_cub *game)
 {
 	write(2, "Error\n", 6);
 	ft_putendl_fd(m, 2);
+	if (game->mlx)
+		clean_mlx(game);
 	if (i == 1)
 	{
 		free(game->cub);

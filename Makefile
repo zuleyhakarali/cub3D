@@ -1,47 +1,52 @@
-NAME = cub3D
-CC = cc
-CFLAGS = -Wall -Wextra -Werror -Iminilibx-linux -g #-g yi sil
+NAME		= cub3D
 
-SRC = main.c\
-	parser/is_valid.c\
-	parser/fir_check.c\
-	parser/main_check.c\
-	parser/sec_utils.c\
-	parser/utils.c
+CC			= cc
+CFLAGS		= -Wall -Wextra -Werror
+RM			= rm -f
 
+LIBFT_DIR	= libft
+LIBFT		= $(LIBFT_DIR)/libft.a
 
-OBJS = $(SRC:.c=.o)
+MLX_DIR		= minilibx-linux
+MLX_LIB		= $(MLX_DIR)/libmlx.a
+MLX_FLAGS	= -L$(MLX_DIR) -lmlx -lXext -lX11 -lm -lbsd
 
-LIB = libft/libft.a
-MLX = minilibx-linux/libmlx.a
-GNL = get_next_line/get_next_line.a
+GNL_DIR		= get_next_line
+GNL_SRCS	= $(GNL_DIR)/get_next_line.c $(GNL_DIR)/get_next_line_utils.c
 
-MLX_FLAGS = -Lminilibx-linux -lmlx -lXext -lX11 -lm -lz
+PARSER_DIR	= parser
+PARSER_SRCS	= $(wildcard $(PARSER_DIR)/*.c)
 
-all: $(LIB) $(PRINTF) $(GNL) $(MLX) $(NAME)
+EXEC_DIR	= executor
+EXEC_SRCS	= $(wildcard $(EXEC_DIR)/*.c)
 
-$(NAME): $(OBJS) $(GNL) $(LIB)
-	$(CC) $(CFLAGS) $(OBJS) $(GNL) $(LIB) $(MLX_FLAGS) -o $(NAME)
+SRCS		= main.c $(PARSER_SRCS) $(EXEC_SRCS) $(GNL_SRCS)
+OBJS		= $(SRCS:.c=.o)
 
-$(LIB):
-	$(MAKE) -C libft
+INCLUDES	= -I. -I$(LIBFT_DIR) -I$(GNL_DIR) -I$(MLX_DIR)
 
-$(GNL):
-	$(MAKE) -C get_next_line
+all: $(NAME)
 
-$(MLX):
-	$(MAKE) -C minilibx-linux
+%.o: %.c
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+$(LIBFT):
+	$(MAKE) -C $(LIBFT_DIR)
+
+$(MLX_LIB):
+	$(MAKE) -C $(MLX_DIR)
+
+$(NAME): $(LIBFT) $(MLX_LIB) $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_DIR)/libft.a $(MLX_FLAGS) -o $(NAME)
 
 clean:
-	rm -f $(OBJS)
-	$(MAKE) -C libft clean
-	$(MAKE) -C get_next_line clean
-	$(MAKE) -C minilibx-linux clean
+	$(RM) $(OBJS)
+	$(MAKE) -C $(LIBFT_DIR) clean
+	$(MAKE) -C $(MLX_DIR) clean
 
 fclean: clean
-	rm -f $(NAME)
-	$(MAKE) -C libft fclean
-	$(MAKE) -C get_next_line fclean
+	$(RM) $(NAME)
+	$(MAKE) -C $(LIBFT_DIR) fclean
 
 re: fclean all
 
