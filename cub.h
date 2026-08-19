@@ -93,5 +93,8 @@ void	check_int(char **s1, char **s2, t_cub *game);
 void	init_mlx(t_cub *game);
 void	init_screen_buffer(t_cub *game);
 
+void load_images(t_cub *game);
+
 void	clean_mlx(t_cub *game);
+
 #endif

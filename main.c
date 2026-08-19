@@ -26,7 +26,8 @@ int	main(int ac, char **av)
 	for_fir_check(ac, av, game);
 	is_cub_valid(game);
 	init_mlx(game);
-	mlx_put_image_to_window(game->mlx->mlx, game->mlx->window, game->mlx->screen_b.img, WIN_WIDTH, WIN_HEIGHT);
+	load_images(game);
+	mlx_put_image_to_window(game->mlx->mlx, game->mlx->window, game->mlx->screen_b.img, 0, 0);
 	mlx_loop(game->mlx->mlx);
 	reg_exit(game);
 }
