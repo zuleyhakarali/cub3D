@@ -94,7 +94,7 @@ void	init_mlx(t_cub *game);
 void	init_screen_buffer(t_cub *game);
 
 void load_images(t_cub *game);
-
+void draw_floor_ceil(t_cub *game);
 void	clean_mlx(t_cub *game);
 
 #endif
