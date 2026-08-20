@@ -61,7 +61,7 @@ static void	reading(char **av, int size, t_cub *game)
 		error("There is no map.", 1, game);
 }
 
-void	for_fir_check(int ac, char **av, t_cub *game)
+void	for_read_etc(int ac, char **av, t_cub *game)
 {
 	int	size;
 

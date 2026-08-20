@@ -78,13 +78,15 @@ void	is_cub_valid(t_cub *game);
 void	error(char *m, int i, t_cub *game);
 void	check_the_top(t_cub *game);
 void	for_free(char **s);
-void	for_fir_check(int ac, char **av, t_cub *game);
+void	for_read_etc(int ac, char **av, t_cub *game);
 char	*open_text(char *l);
 void	check_text_nums(t_cub *game);
 void	check_rgb(t_cub *game, char **s1, char **s2);
 void	check_the_texture(t_cub *game);
 int		ft_iswanted(char *s);
 void	check_int(char **s1, char **s2, t_cub *game);
+void	flood(t_cub *game);
+void	sec_flood(t_cub *game);
 
 
 

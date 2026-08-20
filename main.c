@@ -1,4 +1,4 @@
-#include "../cub.h"
+#include "cub.h"
 
 static void	reg_exit(t_cub *game)
 {
@@ -23,7 +23,7 @@ int	main(int ac, char **av)
 	game = ft_calloc(1, sizeof(t_cub));
 	if (!game)
 		return (1);
-	for_fir_check(ac, av, game);
+	for_read_etc(ac, av, game);
 	is_cub_valid(game);
 	init_mlx(game);
 	load_images(game);

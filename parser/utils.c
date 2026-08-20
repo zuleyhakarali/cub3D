@@ -21,6 +21,10 @@ void	error(char *m, int i, t_cub *game)
 		free(game->ea);
 	if (game->we)
 		free(game->we);
+	if (game->f)
+		free(game->f);
+	if (game->c)
+		free(game->c);
 	free(game);
 	exit(1);
 }

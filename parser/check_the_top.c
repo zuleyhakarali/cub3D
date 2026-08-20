@@ -41,9 +41,23 @@ void	check_int(char **s1, char **s2, t_cub *game)
 
 static void	check_f_c_num(t_cub *game)
 {
-	if (game->f_num != 1)
+	int i = 0;
+	int f;
+	int c;
+
+	f = 0;
+	c = 0;
+	while (game->cub[i])
+	{
+		if (ft_strncmp(game->cub[i], "F ", 2) == 0)
+			f++;
+		else if (ft_strncmp(game->cub[i], "C ", 2) == 0)
+			c++;
+		i++;
+	}
+	if (f != 1)
 		error("There's more or less floor than requirement.", 2, game);
-	if (game->c_num != 1)
+	if (c != 1)
 		error("There's more or less ceil than requirement.", 2, game);
 }
 
@@ -54,6 +68,7 @@ static void	check_the_f_c(t_cub *game)
 	i = 0;
 	game->f_num = 0;
 	game->c_num = 0;
+	check_f_c_num(game);
 	while (game->cub[i])
 	{
 		if (ft_strncmp(game->cub[i], "F ", 2) == 0)
@@ -72,7 +87,30 @@ static void	check_the_f_c(t_cub *game)
 		}
 		i++;
 	}
-	check_f_c_num(game);
+}
+
+void unwanted_char(t_cub *game)
+{
+	int i;
+	int len;
+
+	i = 0;
+	len = game->f_height - game->height;
+	while(i < len)
+	{
+		if (game->cub[i])
+		{
+			if (!(ft_strncmp(game->cub[i], "F ", 2) == 0
+				|| ft_strncmp(game->cub[i], "C ", 2) == 0
+				|| ft_strncmp(game->cub[i], "NO ", 3) == 0
+				|| ft_strncmp(game->cub[i], "SO ", 3) == 0
+				|| ft_strncmp(game->cub[i], "WE ", 3) == 0
+				|| ft_strncmp(game->cub[i], "EA ", 3) == 0
+				|| game->cub[i][0] == '\n'))
+				error("There's unwanted things in the cub.", 2, game);
+			}
+		i++;
+	}
 }
 
 void	check_the_top(t_cub *game)
@@ -82,6 +120,7 @@ void	check_the_top(t_cub *game)
 
 	check_the_texture(game);
 	check_the_f_c(game);
+	unwanted_char(game);
 	s1 = ft_split(game->f, ',');
 	s2 = ft_split(game->c, ',');
 	free(game->f);
