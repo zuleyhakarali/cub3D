@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_the_top.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zkarali <zkarali@student.42istanbul.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/08/27 17:40:55 by zkarali           #+#    #+#             */
+/*   Updated: 2026/08/27 17:52:41 by zkarali          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub.h"
 
-static void	check_int_sec(char **s2, t_cub *game)
+void	check_int_sec(char **s2, t_cub *game)
 {
 	int	i;
 	int	j;
@@ -19,32 +31,13 @@ static void	check_int_sec(char **s2, t_cub *game)
 	}
 }
 
-void	check_int(char **s1, char **s2, t_cub *game)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (s1[i])
-	{
-		j = 0;
-		while (s1[i][j] && s1[i][j] != '\n')
-		{
-			if (!ft_isdigit(s1[i][j]))
-				error("Floor's values are not true type.", 2, game);
-			j++;
-		}
-		i++;
-	}
-	check_int_sec(s2, game);
-}
-
 static void	check_f_c_num(t_cub *game)
 {
-	int i = 0;
-	int f;
-	int c;
+	int	i;
+	int	f;
+	int	c;
 
+	i = 0;
 	f = 0;
 	c = 0;
 	while (game->cub[i])
@@ -89,26 +82,26 @@ static void	check_the_f_c(t_cub *game)
 	}
 }
 
-void unwanted_char(t_cub *game)
+void	unwanted_char(t_cub *game)
 {
-	int i;
-	int len;
+	int	i;
+	int	len;
 
 	i = 0;
 	len = game->f_height - game->height;
-	while(i < len)
+	while (i < len)
 	{
 		if (game->cub[i])
 		{
 			if (!(ft_strncmp(game->cub[i], "F ", 2) == 0
-				|| ft_strncmp(game->cub[i], "C ", 2) == 0
-				|| ft_strncmp(game->cub[i], "NO ", 3) == 0
-				|| ft_strncmp(game->cub[i], "SO ", 3) == 0
-				|| ft_strncmp(game->cub[i], "WE ", 3) == 0
-				|| ft_strncmp(game->cub[i], "EA ", 3) == 0
-				|| game->cub[i][0] == '\n'))
-				error("There's unwanted things in the cub.", 2, game);
-			}
+					|| ft_strncmp(game->cub[i], "C ", 2) == 0
+					|| ft_strncmp(game->cub[i], "NO ", 3) == 0
+					|| ft_strncmp(game->cub[i], "SO ", 3) == 0
+					|| ft_strncmp(game->cub[i], "WE ", 3) == 0
+					|| ft_strncmp(game->cub[i], "EA ", 3) == 0
+					|| game->cub[i][0] == '\n'))
+				error("There's unwanted line in the cub.", 2, game);
+		}
 		i++;
 	}
 }
@@ -123,8 +116,6 @@ void	check_the_top(t_cub *game)
 	unwanted_char(game);
 	s1 = ft_split(game->f, ',');
 	s2 = ft_split(game->c, ',');
-	free(game->f);
-	free(game->c);
 	if (!s1 || !s1[0] || !s1[1] || !s1[2] || s1[3] != NULL
 		|| !s2 || !s2[0] || !s2[1] || !s2[2] || s2[3] != NULL)
 	{

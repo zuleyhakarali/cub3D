@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sec_utils.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zkarali <zkarali@student.42istanbul.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/08/27 17:41:21 by zkarali           #+#    #+#             */
+/*   Updated: 2026/08/27 17:50:01 by zkarali          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub.h"
 
 static void	file_open(t_cub *game)
@@ -92,4 +104,24 @@ void	check_text_nums(t_cub *game)
 	}
 	if (no != 1 || so != 1 || ea != 1 || we != 1)
 		error("Textures are more or less than required.", 2, game);
+}
+
+void	check_int(char **s1, char **s2, t_cub *game)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (s1[i])
+	{
+		j = 0;
+		while (s1[i][j] && s1[i][j] != '\n')
+		{
+			if (!ft_isdigit(s1[i][j]))
+				error("Floor's values are not true type.", 2, game);
+			j++;
+		}
+		i++;
+	}
+	check_int_sec(s2, game);
 }

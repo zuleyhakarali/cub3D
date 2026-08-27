@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   flood_fills.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zkarali <zkarali@student.42istanbul.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/08/27 17:41:02 by zkarali           #+#    #+#             */
+/*   Updated: 2026/08/27 17:51:52 by zkarali          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub.h"
 
 static void	fill(char **tmp, int y, int x, t_cub *g)
@@ -45,7 +57,8 @@ void	flood(t_cub *game)
 static void	sec_fill(char **tmp, int y, int x, t_cub *g)
 {
 	if (y < 0 || x < 0 || y >= g->height || x >= ft_strlen(tmp[y])
-		|| tmp[y][x] == 'f' || tmp[y][x] == ' ' || tmp[y][x] == '\n' || tmp[y][x] == '\0')
+		|| tmp[y][x] == 'f' || tmp[y][x] == ' '
+		|| tmp[y][x] == '\n' || tmp[y][x] == '\0')
 		return ;
 	tmp[y][x] = 'f';
 	sec_fill(tmp, y - 1, x, g);
@@ -54,17 +67,17 @@ static void	sec_fill(char **tmp, int y, int x, t_cub *g)
 	sec_fill(tmp, y, x + 1, g);
 }
 
-static void check_the_fill(char **tmp, t_cub *g)
+static void	check_the_fill(char **tmp, t_cub *g)
 {
-	int i;
-	int j;
-	char c;
+	int		i;
+	int		j;
+	char	c;
 
 	i = 0;
 	while (tmp[i])
 	{
 		j = 0;
-		while(tmp[i][j])
+		while (tmp[i][j])
 		{
 			c = tmp[i][j];
 			if (c == '1' || c == '0'

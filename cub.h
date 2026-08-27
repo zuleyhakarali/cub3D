@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub.h                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zkarali <zkarali@student.42istanbul.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/08/27 17:41:37 by zkarali           #+#    #+#             */
+/*   Updated: 2026/08/27 17:54:42 by zkarali          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB_H
 # define CUB_H
 
@@ -36,7 +48,6 @@ typedef struct s_img
 	int		heig;
 }	t_img;
 
-
 typedef struct s_mlx
 {
 	void	*mlx;
@@ -72,7 +83,6 @@ typedef struct s_cub
 	t_mlx	*mlx;
 }	t_cub;
 
-
 int		main(int ac, char **av);
 void	is_cub_valid(t_cub *game);
 void	error(char *m, int i, t_cub *game);
@@ -85,18 +95,15 @@ void	check_rgb(t_cub *game, char **s1, char **s2);
 void	check_the_texture(t_cub *game);
 int		ft_iswanted(char *s);
 void	check_int(char **s1, char **s2, t_cub *game);
+void	check_int_sec(char **s2, t_cub *game);
 void	flood(t_cub *game);
 void	sec_flood(t_cub *game);
-
-
-
-//executor
 
 void	init_mlx(t_cub *game);
 void	init_screen_buffer(t_cub *game);
 
-void load_images(t_cub *game);
-void draw_floor_ceil(t_cub *game);
+void	load_images(t_cub *game);
+void	draw_floor_ceil(t_cub *game);
 void	clean_mlx(t_cub *game);
 
 #endif
