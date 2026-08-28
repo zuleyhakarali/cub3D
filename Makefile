@@ -1,7 +1,7 @@
 NAME		= cub3D
 
 CC			= cc
-CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror -Wno-cast-function-type
 RM			= rm -f
 
 LIBFT_DIR	= libft

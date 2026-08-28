@@ -1,5 +1,3 @@
-//4 texture'ı xpm'den yükleme
-
 #include "../cub.h"
 
 static void load_single_image(t_cub *game, char *path, t_img *tex)

@@ -1,36 +1,4 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: zkarali <zkarali@student.42istanbul.com    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/27 17:41:32 by zkarali           #+#    #+#             */
-/*   Updated: 2026/08/27 17:58:04 by zkarali          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "cub.h"
-
-static void	reg_exit(t_cub *game)
-{
-	clean_mlx(game);
-	for_free(game->cub);
-	if (game->so)
-		free(game->so);
-	if (game->no)
-		free(game->no);
-	if (game->ea)
-		free(game->ea);
-	if (game->we)
-		free(game->we);
-	if (game->f)
-		free(game->f);
-	if (game->c)
-		free(game->c);
-	free(game);
-	exit(0);
-}
 
 int	main(int ac, char **av)
 {
@@ -41,11 +9,15 @@ int	main(int ac, char **av)
 		return (1);
 	for_read_etc(ac, av, game);
 	is_cub_valid(game);
+	game->map_offset = game->f_height - game->height;
 	init_mlx(game);
 	load_images(game);
-	draw_floor_ceil(game);
-	mlx_put_image_to_window(game->mlx->mlx, game->mlx->window,
-		game->mlx->screen_b.img, 0, 0);
+	init_player_dir(game);
+	render_frame(game);
+	mlx_hook(game->mlx->window, 2, 1L << 0, (int (*)())key_press, game);
+	mlx_hook(game->mlx->window, 3, 1L << 1, (int (*)())key_release, game);
+	mlx_hook(game->mlx->window, 17, 0, (int (*)())close_window, game);
+	mlx_loop_hook(game->mlx->mlx, (int (*)())game_loop, game);
 	mlx_loop(game->mlx->mlx);
-	reg_exit(game);
+	return (0);
 }

@@ -1,14 +1,12 @@
 #include "../cub.h"
 
-//mlx_init, pencere, screen buffer image
-
 static void new_window(t_cub *game)
 {
     t_mlx *mlx;
 
     mlx = game->mlx;
     mlx->window = mlx_new_window(mlx->mlx, WIN_WIDTH, 
-        WIN_HEIGHT, "cub3d");
+        WIN_HEIGHT, "cub3D");
     if (mlx->window == NULL)
         error("mlx_new_window failed", 2, game);
 }

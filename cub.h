@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cub.h                                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: zkarali <zkarali@student.42istanbul.com    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/27 17:41:37 by zkarali           #+#    #+#             */
-/*   Updated: 2026/08/27 17:54:42 by zkarali          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef CUB_H
 # define CUB_H
 
@@ -28,8 +16,15 @@
 # define WIN_HEIGHT  720   //pencere genişliği
 # define MOVE_SPEED  0.05  // oyuncu hızı
 # define ROT_SPEED   0.03  // oyuncu rotasyon speed
+# define KEY_ESC    65307
+# define KEY_W      119
+# define KEY_A      97
+# define KEY_S      115
+# define KEY_D      100
+# define KEY_LEFT   65361
+# define KEY_RIGHT  65363
 
-typedef enum e_tex // Doku dizisinin indeks isimleri
+typedef enum e_tex
 {
 	NO_t = 0,
 	SO_t = 1,
@@ -56,20 +51,37 @@ typedef struct s_mlx
 	t_img	textures[4];
 }	t_mlx;
 
+typedef struct s_ray
+{
+	double	ray_dir_x;
+	double	ray_dir_y;
+	int		map_x;
+	int		map_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	int		step_x;
+	int		step_y;
+	int		hit;
+	int		side;
+	double	perp_wall_dist;
+}	t_ray;
+
 typedef struct s_cub
 {
-	char	**cub; //harita
-	double	x; //px pozisyon
-	double	y; //py pozisyon
-	double	x_dir; //px yönü
-	double	y_dir; //py yönü
-	double	x_plane; // kamera düzlemi x
-	double	y_plane; // kamera düzlemi y
-	int		height; //yükseklik
-	int		f_height; //harita toplam uzunluğu
-	int		width; //genişlik
-	int		floor; //taban renk
-	int		ceil; ///tavan renk
+	char	**cub;
+	double	x;
+	double	y;
+	double	x_dir;
+	double	y_dir;
+	double	x_plane;
+	double	y_plane;
+	int		height;
+	int		f_height;
+	int		width;
+	int		floor;
+	int		ceil;
 	char	*f;
 	char	*c;
 	int		f_num;
@@ -81,8 +93,16 @@ typedef struct s_cub
 	int		fd;
 	char	player;
 	t_mlx	*mlx;
+	int		map_offset;
+	int		key_w;
+	int		key_s;
+	int		key_a;
+	int		key_d;
+	int		key_left;
+	int		key_right;
 }	t_cub;
 
+// --- parser ---
 int		main(int ac, char **av);
 void	is_cub_valid(t_cub *game);
 void	error(char *m, int i, t_cub *game);
@@ -95,15 +115,51 @@ void	check_rgb(t_cub *game, char **s1, char **s2);
 void	check_the_texture(t_cub *game);
 int		ft_iswanted(char *s);
 void	check_int(char **s1, char **s2, t_cub *game);
-void	check_int_sec(char **s2, t_cub *game);
 void	flood(t_cub *game);
 void	sec_flood(t_cub *game);
-
+void	check_int_sec(char **s2, t_cub *game);
+// --- executor: init_mlx.c ---
 void	init_mlx(t_cub *game);
 void	init_screen_buffer(t_cub *game);
 
+// --- executor: load_textures.c ---
 void	load_images(t_cub *game);
+
+// --- executor: init_player.c ---
+void	init_player_dir(t_cub *game);
+
+// --- executor: raycast_init.c ---
+void	init_ray(t_cub *game, t_ray *ray, int x);
+
+// --- executor: raycast_dda.c ---
+void	perform_dda(t_cub *game, t_ray *ray);
+void	calc_perp_dist(t_ray *ray);
+
+// --- executor: raycast_texture.c ---
+t_img	*select_texture(t_cub *game, t_ray *ray);
+int		calc_tex_x(t_cub *game, t_ray *ray, t_img *tex);
+int		get_tex_color(t_img *tex, int tx, int ty);
+
+// --- executor: raycast_draw.c ---
+void	draw_wall_column(t_cub *game, t_ray *ray, int x);
+
+// --- executor: render.c ---
 void	draw_floor_ceil(t_cub *game);
+void	render_frame(t_cub *game);
+int		game_loop(void *param);
+
+// --- executor: hooks_key.c ---
+int		key_press(int keycode, t_cub *game);
+int		key_release(int keycode, t_cub *game);
+int		close_window(t_cub *game);
+
+// --- executor: hooks_move.c ---
+int		can_move(t_cub *game, double nx, double ny);
+void	move_player(t_cub *game);
+void	rotate_player(t_cub *game);
+
+// --- executor: exec_exit.c ---
 void	clean_mlx(t_cub *game);
+void	exit_game(t_cub *game);
 
 #endif

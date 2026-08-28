@@ -1,5 +1,3 @@
-//player yön vektörleri (x_dir,y_dir,plane)
-
 #include "../cub.h"
 
 static void set_dir_no_so(t_cub *game)
@@ -16,7 +14,6 @@ static void set_dir_no_so(t_cub *game)
         game->y_dir = 1;
         game->x_plane = -0.66;
     }
-   
 }
 
 static void set_dir_ea_we(t_cub *game)
