@@ -17,12 +17,12 @@ t_img	*select_texture(t_cub *game, t_ray *ray)
 	if (ray->side == 1)
 	{
 		if (ray->ray_dir_y > 0)
-			return (&game->mlx->textures[NO_t]);
-		return (&game->mlx->textures[SO_t]);
+			return (&game->mlx->textures[SO_t]);
+		return (&game->mlx->textures[NO_t]);
 	}
 	if (ray->ray_dir_x > 0)
-		return (&game->mlx->textures[WE_t]);
-	return (&game->mlx->textures[EA_t]);
+		return (&game->mlx->textures[EA_t]);
+	return (&game->mlx->textures[WE_t]);
 }
 
 int	calc_tex_x(t_cub *game, t_ray *ray, t_img *tex)
