@@ -66,6 +66,10 @@ typedef struct s_ray
 	int		hit;
 	int		side;
 	double	perp_wall_dist;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
+	int		tex_x;
 }	t_ray;
 
 typedef struct s_cub
