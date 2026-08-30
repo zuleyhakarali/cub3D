@@ -6,7 +6,7 @@
 /*   By: zkarali <zkarali@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/27 17:41:14 by zkarali           #+#    #+#             */
-/*   Updated: 2026/08/30 11:38:17 by zkarali          ###   ########.fr       */
+/*   Updated: 2026/08/30 15:41:13 by zkarali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ static void	reading(char **av, int size, t_cub *game)
 	if (fd == -1)
 		error("File could not be opened.", 0, game);
 	i = 0;
-	size = 2;
 	while (1)
 	{
 		line = get_next_line(fd);
@@ -86,8 +85,5 @@ void	for_read_etc(int ac, char **av, t_cub *game)
 	if (!game->cub)
 		error("Malloc error.", 0, game);
 	reading(av, size, game);
-	game->width = ft_strlen(game->cub[0]);
-	if (game->cub[0][game->width - 1] == '\n')
-		game->width--;
 	game->height = 0;
 }

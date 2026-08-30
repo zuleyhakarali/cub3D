@@ -6,7 +6,7 @@
 /*   By: zkarali <zkarali@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/27 17:41:02 by zkarali           #+#    #+#             */
-/*   Updated: 2026/08/27 17:51:52 by zkarali          ###   ########.fr       */
+/*   Updated: 2026/08/30 16:01:00 by zkarali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	fill(char **tmp, int y, int x, t_cub *g)
 {
 	if (y < 0 || x < 0 || y >= g->height || x >= ft_strlen(tmp[y])
-		|| tmp[y][x] == ' ')
+		|| tmp[y][x] == ' ') //boşluk?
 	{
 		for_free(tmp);
 		error("Map is not closed.", 2, g);
@@ -48,9 +48,7 @@ void	flood(t_cub *game)
 		j++;
 	}
 	tmp[j] = NULL;
-	i = game->height;
 	fill(tmp, y, x, game);
-	game->height = i;
 	for_free(tmp);
 }
 
@@ -111,9 +109,7 @@ void	sec_flood(t_cub *game)
 		j++;
 	}
 	tmp[j] = NULL;
-	i = game->height;
 	sec_fill(tmp, y, x, game);
 	check_the_fill(tmp, game);
-	game->height = i;
 	for_free(tmp);
 }

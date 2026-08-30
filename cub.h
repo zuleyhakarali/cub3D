@@ -6,7 +6,7 @@
 /*   By: zkarali <zkarali@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/30 15:24:38 by zkarali           #+#    #+#             */
-/*   Updated: 2026/08/30 15:24:39 by zkarali          ###   ########.fr       */
+/*   Updated: 2026/08/30 16:19:55 by zkarali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@
 # include <stdlib.h>    // malloc, free, exit
 # include <string.h>    // strerror
 # include <sys/time.h>  // gettimeofday
-# include <math.h>      // Matematik kütüphanesi fonksiyonları (-lm)
-# include <mlx.h>       // MiniLibX grafik kütüphanesi
+# include <math.h>      
+# include <mlx.h>       
 
-# define WIN_WIDTH   1280  //pencere yüksekliği
-# define WIN_HEIGHT  720   //pencere genişliği
-# define MOVE_SPEED  0.05  // oyuncu hızı
-# define ROT_SPEED   0.03  // oyuncu rotasyon speed
+# define WIN_WIDTH   1280
+# define WIN_HEIGHT  720
+# define MOVE_SPEED  0.05
+# define ROT_SPEED   0.03
 # define KEY_ESC    65307
 # define KEY_W      119
 # define KEY_A      97
@@ -95,7 +95,6 @@ typedef struct s_cub
 	double	y_plane;
 	int		height;
 	int		f_height;
-	int		width;
 	int		floor;
 	int		ceil;
 	char	*f;
@@ -118,63 +117,50 @@ typedef struct s_cub
 	int		key_right;
 }	t_cub;
 
-// --- parser ---
 int		main(int ac, char **av);
 void	is_cub_valid(t_cub *game);
 void	error(char *m, int i, t_cub *game);
 void	check_the_top(t_cub *game);
 void	for_free(char **s);
 void	for_read_etc(int ac, char **av, t_cub *game);
-char	*open_text(char *l);
-void	check_text_nums(t_cub *game);
 void	check_rgb(t_cub *game, char **s1, char **s2);
 void	check_the_texture(t_cub *game);
-int		ft_iswanted(char *s);
-void	check_int(char **s1, char **s2, t_cub *game);
+void	is_int(char **s1, char **s2, t_cub *game);
 void	flood(t_cub *game);
 void	sec_flood(t_cub *game);
-void	check_int_sec(char **s2, t_cub *game);
-// --- executor: init_mlx.c ---
+void	check_the_f_c(t_cub *game);
+char	*open_text(char *l);
+
 void	init_mlx(t_cub *game);
 void	init_screen_buffer(t_cub *game);
 
-// --- executor: load_textures.c ---
 void	load_images(t_cub *game);
 
-// --- executor: init_player.c ---
 void	init_player_dir(t_cub *game);
 
-// --- executor: raycast_init.c ---
 void	init_ray(t_cub *game, t_ray *ray, int x);
 
-// --- executor: raycast_dda.c ---
 void	perform_dda(t_cub *game, t_ray *ray);
 void	calc_perp_dist(t_ray *ray);
 
-// --- executor: raycast_texture.c ---
 t_img	*select_texture(t_cub *game, t_ray *ray);
 int		calc_tex_x(t_cub *game, t_ray *ray, t_img *tex);
 int		get_tex_color(t_img *tex, int tx, int ty);
 
-// --- executor: raycast_draw.c ---
 void	draw_wall_column(t_cub *game, t_ray *ray, int x);
 
-// --- executor: render.c ---
 void	draw_floor_ceil(t_cub *game);
 void	render_frame(t_cub *game);
 int		game_loop(void *param);
 
-// --- executor: hooks_key.c ---
 int		key_press(int keycode, t_cub *game);
 int		key_release(int keycode, t_cub *game);
 int		close_window(t_cub *game);
 
-// --- executor: hooks_move.c ---
 int		can_move(t_cub *game, double nx, double ny);
 void	move_player(t_cub *game);
 void	rotate_player(t_cub *game);
 
-// --- executor: exec_exit.c ---
 void	clean_mlx(t_cub *game);
 void	exit_game(t_cub *game);
 
