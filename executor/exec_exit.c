@@ -6,7 +6,7 @@
 /*   By: zkarali <zkarali@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/30 11:16:33 by zkarali           #+#    #+#             */
-/*   Updated: 2026/08/30 11:16:44 by zkarali          ###   ########.fr       */
+/*   Updated: 2026/08/30 12:40:26 by zkarali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,10 @@ void	exit_game(t_cub *game)
 		free(game->ea);
 	if (game->we)
 		free(game->we);
+	if (game->f)
+		free(game->f);
+	if (game->c)
+		free(game->c);
 	free(game);
 	exit(0);
 }

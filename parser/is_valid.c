@@ -6,7 +6,7 @@
 /*   By: zkarali <zkarali@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/27 17:41:08 by zkarali           #+#    #+#             */
-/*   Updated: 2026/08/30 11:58:26 by zkarali          ###   ########.fr       */
+/*   Updated: 2026/08/30 12:27:12 by zkarali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ void	is_cub_valid(t_cub *game)
 	find_height(game);
 	check_the_top(game);
 	len = game->f_height - 1;
-	//if (game->cub[len][ft_strlen(game->cub[len]) - 1] == '\n')
-	//	error("There is a newline in the bottom of the map.", 2, game);
+	if (game->cub[len][ft_strlen(game->cub[len]) - 1] == '\n')
+		error("There is a newline in the bottom of the map.", 2, game);
 	i = game->f_height - game->height;
 	while (game->cub[i])
 	{
