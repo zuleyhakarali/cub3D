@@ -1,4 +1,17 @@
-// duvar yüksekliğini hesaplayıp, texture'dan örnekleyerek ekran buffer'ına yazma
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   raycast_draw.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zkarali <zkarali@student.42istanbul.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/08/30 11:17:38 by zkarali           #+#    #+#             */
+/*   Updated: 2026/08/30 11:23:32 by zkarali          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+// duvar yüksekliğini hesaplayıp, texture'dan örnekleyerek 
+// ekran buffer'ına yazma
 
 #include "../cub.h"
 
@@ -46,7 +59,8 @@ void	draw_wall_column(t_cub *game, t_ray *ray, int x)
 	y = start;
 	while (y < end)
 	{
-		put_pixel(game, x, y, get_tex_color(tex, tex_x, (int)tex_pos % tex->heig));
+		put_pixel(game, x, y, get_tex_color(tex, tex_x,
+				(int)tex_pos % tex->heig));
 		tex_pos += step;
 		y++;
 	}

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   raycast_init.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zkarali <zkarali@student.42istanbul.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/08/30 11:17:46 by zkarali           #+#    #+#             */
+/*   Updated: 2026/08/30 11:23:44 by zkarali          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub.h"
 
 static void	calculate_delta_dist(t_ray *ray)
@@ -11,7 +23,6 @@ static void	calculate_delta_dist(t_ray *ray)
 	else
 		ray->delta_dist_y = fabs(1 / ray->ray_dir_y);
 }
-
 
 static void	calculate_step_side(t_cub *game, t_ray *ray)
 {
