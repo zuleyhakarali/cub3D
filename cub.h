@@ -99,8 +99,6 @@ typedef struct s_cub
 	int		ceil;
 	char	*f;
 	char	*c;
-	int		f_num;
-	int		c_num;
 	char	*no;
 	char	*so;
 	char	*we;
@@ -125,7 +123,6 @@ void	for_free(char **s);
 void	for_read_etc(int ac, char **av, t_cub *game);
 void	check_rgb(t_cub *game, char **s1, char **s2);
 void	check_the_texture(t_cub *game);
-void	is_int(char **s1, char **s2, t_cub *game);
 void	flood(t_cub *game);
 void	sec_flood(t_cub *game);
 void	check_the_f_c(t_cub *game);

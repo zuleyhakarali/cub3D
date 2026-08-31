@@ -62,8 +62,6 @@ void	check_the_f_c(t_cub *game)
 	int	i;
 
 	i = 0;
-	game->f_num = 0;
-	game->c_num = 0;
 	check_f_c_num(game);
 	while (game->cub[i])
 	{
@@ -72,14 +70,12 @@ void	check_the_f_c(t_cub *game)
 			if (!ft_iswanted(game->cub[i]))
 				error("You have a problem with the floor RGB", 2, game);
 			game->f = open_text(game->cub[i]);
-			game->f_num++;
 		}
 		else if (ft_strncmp(game->cub[i], "C ", 2) == 0)
 		{
 			if (!ft_iswanted(game->cub[i]))
 				error("You have a problem with the ceil RGB", 2, game);
 			game->c = open_text(game->cub[i]);
-			game->c_num++;
 		}
 		i++;
 	}

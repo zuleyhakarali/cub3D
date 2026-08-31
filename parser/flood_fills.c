@@ -15,7 +15,7 @@
 static void	fill(char **tmp, int y, int x, t_cub *g)
 {
 	if (y < 0 || x < 0 || y >= g->height || x >= ft_strlen(tmp[y])
-		|| tmp[y][x] == ' ') //boşluk?
+		|| tmp[y][x] == ' ')
 	{
 		for_free(tmp);
 		error("Map is not closed.", 2, g);
@@ -55,8 +55,7 @@ void	flood(t_cub *game)
 static void	sec_fill(char **tmp, int y, int x, t_cub *g)
 {
 	if (y < 0 || x < 0 || y >= g->height || x >= ft_strlen(tmp[y])
-		|| tmp[y][x] == 'f' || tmp[y][x] == ' '
-		|| tmp[y][x] == '\n' || tmp[y][x] == '\0')
+		|| tmp[y][x] == 'f' || tmp[y][x] == ' ' || tmp[y][x] == '\n')
 		return ;
 	tmp[y][x] = 'f';
 	sec_fill(tmp, y - 1, x, g);
