@@ -148,7 +148,6 @@ int		game_loop(void *param);
 int		key_press(int keycode, t_cub *game);
 int		key_release(int keycode, t_cub *game);
 int		close_window(t_cub *game);
-int		can_move(t_cub *game, double nx, double ny);
 void	move_player(t_cub *game);
 void	rotate_player(t_cub *game);
 void	clean_mlx(t_cub *game);

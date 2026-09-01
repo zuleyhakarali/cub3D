@@ -12,7 +12,7 @@
 
 #include "../cub.h"
 
-int	can_move(t_cub *game, double nx, double ny)
+static int	can_move(t_cub *game, double nx, double ny)
 {
 	int	mx;
 	int	my;
