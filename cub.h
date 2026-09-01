@@ -6,7 +6,7 @@
 /*   By: zkarali <zkarali@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/30 15:24:38 by zkarali           #+#    #+#             */
-/*   Updated: 2026/08/30 16:19:55 by zkarali          ###   ########.fr       */
+/*   Updated: 2026/09/01 15:11:58 by zkarali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ void	check_the_texture(t_cub *game);
 void	flood(t_cub *game);
 void	sec_flood(t_cub *game);
 void	check_the_f_c(t_cub *game);
-char	*open_text(char *l);	
+char	*open_text(char *l);
 void	init_mlx(t_cub *game);
 void	load_images(t_cub *game);
 void	init_player_dir(t_cub *game);
