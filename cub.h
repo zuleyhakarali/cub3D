@@ -15,12 +15,12 @@
 
 # include "libft/libft.h"
 # include "get_next_line/get_next_line.h"
-# include <fcntl.h>     // open
-# include <unistd.h>    // close, read, write
-# include <stdio.h>     // printf, perror
-# include <stdlib.h>    // malloc, free, exit
-# include <string.h>    // strerror
-# include <sys/time.h>  // gettimeofday
+# include <fcntl.h>
+# include <unistd.h>    
+# include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
+# include <sys/time.h>
 # include <math.h>      
 # include <mlx.h>       
 
@@ -129,35 +129,24 @@ void	check_the_f_c(t_cub *game);
 char	*open_text(char *l);
 
 void	init_mlx(t_cub *game);
-void	init_screen_buffer(t_cub *game);
-
 void	load_images(t_cub *game);
-
 void	init_player_dir(t_cub *game);
-
 void	init_ray(t_cub *game, t_ray *ray, int x);
-
 void	perform_dda(t_cub *game, t_ray *ray);
 void	calc_perp_dist(t_ray *ray);
-
 t_img	*select_texture(t_cub *game, t_ray *ray);
 int		calc_tex_x(t_cub *game, t_ray *ray, t_img *tex);
 int		get_tex_color(t_img *tex, int tx, int ty);
-
 void	draw_wall_column(t_cub *game, t_ray *ray, int x);
-
 void	draw_floor_ceil(t_cub *game);
 void	render_frame(t_cub *game);
 int		game_loop(void *param);
-
 int		key_press(int keycode, t_cub *game);
 int		key_release(int keycode, t_cub *game);
 int		close_window(t_cub *game);
-
 int		can_move(t_cub *game, double nx, double ny);
 void	move_player(t_cub *game);
 void	rotate_player(t_cub *game);
-
 void	clean_mlx(t_cub *game);
 void	exit_game(t_cub *game);
 

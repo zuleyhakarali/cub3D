@@ -23,7 +23,7 @@ static void	new_window(t_cub *game)
 		error("mlx_new_window failed", 2, game);
 }
 
-void	init_screen_buffer(t_cub *game)
+static void	init_screen_buffer(t_cub *game)
 {
 	t_mlx	*mlx;
 
