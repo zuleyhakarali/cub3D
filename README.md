@@ -48,12 +48,12 @@ Run `cub3D` by passing a valid `.cub` map file as an argument:
 
 ### Controls
 
-Key                Action
-
-W / S              Move Forward / Backward
-A / D              Strafe Left / Right
-Left / Right       Arrow Rotate Camera Left / Right
-ESC / Window [X]   Close Application Cleanly
+| Key | Action |
+| :--- | :--- |
+| **W / S** | Move Forward / Backward |
+| **A / D** | Strafe Left / Right |
+| **Left / Right Arrow** | Rotate Camera Left / Right |
+| **ESC / Window [X]** | Close Application Cleanly |
 
 ---
 
