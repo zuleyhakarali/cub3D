@@ -6,7 +6,7 @@
 /*   By: zkarali <zkarali@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/27 17:41:26 by zkarali           #+#    #+#             */
-/*   Updated: 2026/08/30 16:19:14 by zkarali          ###   ########.fr       */
+/*   Updated: 2026/09/01 13:00:02 by zkarali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	error(char *m, int i, t_cub *game)
 {
 	write(2, "Error\n", 6);
 	ft_putendl_fd(m, 2);
-	if (game->mlx)
+	if (game->mlx != NULL)
 		clean_mlx(game);
 	if (i == 1)
 	{
