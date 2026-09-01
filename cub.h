@@ -16,25 +16,25 @@
 # include "libft/libft.h"
 # include "get_next_line/get_next_line.h"
 # include <fcntl.h>
-# include <unistd.h>    
+# include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
 # include <sys/time.h>
-# include <math.h>      
-# include <mlx.h>       
+# include <math.h>
+# include <mlx.h>
 
-# define WIN_WIDTH   1280
-# define WIN_HEIGHT  720
-# define MOVE_SPEED  0.05
-# define ROT_SPEED   0.03
-# define KEY_ESC    65307
-# define KEY_W      119
-# define KEY_A      97
-# define KEY_S      115
-# define KEY_D      100
-# define KEY_LEFT   65361
-# define KEY_RIGHT  65363
+# define WIN_WIDTH 1280
+# define WIN_HEIGHT 720
+# define MOVE_SPEED 0.05
+# define ROT_SPEED 0.03
+# define KEY_ESC 65307
+# define KEY_W 119
+# define KEY_A 97
+# define KEY_S 115
+# define KEY_D 100
+# define KEY_LEFT 65361
+# define KEY_RIGHT 65363
 
 typedef enum e_tex
 {
@@ -65,24 +65,30 @@ typedef struct s_mlx
 
 typedef struct s_ray
 {
-	double	ray_dir_x;
-	double	ray_dir_y;
-	int		map_x;
-	int		map_y;
-	double	delta_dist_x;
-	double	delta_dist_y;
-	double	side_dist_x;
-	double	side_dist_y;
+	double	dir_x;
+	double	dir_y;
+	int		cell_x;
+	int		cell_y;
 	int		step_x;
 	int		step_y;
-	int		hit;
-	int		side;
-	double	perp_wall_dist;
-	int		line_height;
-	int		draw_start;
-	int		draw_end;
-	int		tex_x;
+	double	cost_x;
+	double	cost_y;
+	double	to_border_x;
+	double	to_border_y;
+	int		hit_wall;
+	int		hit_vertical;
+	double	distance;
 }	t_ray;
+
+typedef struct s_wall
+{
+	int		screen_x;
+	int		height;
+	int		top;
+	int		bottom;
+	int		tex_x;
+	t_img	*tex;
+}	t_wall;
 
 typedef struct s_cub
 {
@@ -126,18 +132,16 @@ void	check_the_texture(t_cub *game);
 void	flood(t_cub *game);
 void	sec_flood(t_cub *game);
 void	check_the_f_c(t_cub *game);
-char	*open_text(char *l);
-
+char	*open_text(char *l);	
 void	init_mlx(t_cub *game);
 void	load_images(t_cub *game);
 void	init_player_dir(t_cub *game);
-void	init_ray(t_cub *game, t_ray *ray, int x);
-void	perform_dda(t_cub *game, t_ray *ray);
-void	calc_perp_dist(t_ray *ray);
-t_img	*select_texture(t_cub *game, t_ray *ray);
-int		calc_tex_x(t_cub *game, t_ray *ray, t_img *tex);
-int		get_tex_color(t_img *tex, int tx, int ty);
-void	draw_wall_column(t_cub *game, t_ray *ray, int x);
+void	init_ray(t_cub *game, t_ray *ray, int screen_x);
+void	cast_ray(t_cub *game, t_ray *ray);
+t_img	*pick_texture(t_cub *game, t_ray *ray);
+int		texture_column(t_cub *game, t_ray *ray, t_img *tex);
+int		texture_pixel(t_img *tex, int tx, int ty);
+void	draw_wall(t_cub *game, t_ray *ray, t_wall *wall);
 void	draw_floor_ceil(t_cub *game);
 void	render_frame(t_cub *game);
 int		game_loop(void *param);

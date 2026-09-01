@@ -12,38 +12,38 @@
 
 #include "../cub.h"
 
-t_img	*select_texture(t_cub *game, t_ray *ray)
+t_img	*pick_texture(t_cub *game, t_ray *ray)
 {
-	if (ray->side == 1)
+	if (!ray->hit_vertical)
 	{
-		if (ray->ray_dir_y > 0)
+		if (ray->dir_y > 0)
 			return (&game->mlx->textures[SO_t]);
 		return (&game->mlx->textures[NO_t]);
 	}
-	if (ray->ray_dir_x > 0)
+	if (ray->dir_x > 0)
 		return (&game->mlx->textures[EA_t]);
 	return (&game->mlx->textures[WE_t]);
 }
 
-int	calc_tex_x(t_cub *game, t_ray *ray, t_img *tex)
+int	texture_column(t_cub *game, t_ray *ray, t_img *tex)
 {
-	double	wall_x;
-	int		tex_x;
+	double	hit_pos;
+	int		column;
 
-	if (ray->side == 0)
-		wall_x = game->y + ray->perp_wall_dist * ray->ray_dir_y;
+	if (ray->hit_vertical)
+		hit_pos = game->y + ray->distance * ray->dir_y;
 	else
-		wall_x = game->x + ray->perp_wall_dist * ray->ray_dir_x;
-	wall_x -= floor(wall_x);
-	tex_x = (int)(wall_x * (double)tex->wid);
-	if (ray->side == 0 && ray->ray_dir_x > 0)
-		tex_x = tex->wid - tex_x - 1;
-	if (ray->side == 1 && ray->ray_dir_y < 0)
-		tex_x = tex->wid - tex_x - 1;
-	return (tex_x);
+		hit_pos = game->x + ray->distance * ray->dir_x;
+	hit_pos -= floor(hit_pos);
+	column = (int)(hit_pos * (double)tex->wid);
+	if (ray->hit_vertical && ray->dir_x > 0)
+		column = tex->wid - column - 1;
+	if (!ray->hit_vertical && ray->dir_y < 0)
+		column = tex->wid - column - 1;
+	return (column);
 }
 
-int	get_tex_color(t_img *tex, int tx, int ty)
+int	texture_pixel(t_img *tex, int tx, int ty)
 {
 	char	*pixel;
 

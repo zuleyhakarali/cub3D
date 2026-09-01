@@ -39,7 +39,7 @@ static int	load_single_image(t_cub *game, char *path, t_img *tex)
 	return (2);
 }
 
-static int sec_load_images(t_cub *game)
+static int	sec_load_images(t_cub *game)
 {
 	int	e;
 	int	w;
@@ -69,7 +69,7 @@ void	load_images(t_cub *game)
 	int	n;
 	int	s;
 	int	i;
-	
+
 	n = load_single_image(game, game->no, &game->mlx->textures[NO_t]);
 	if (n != 2)
 		for_img_free(game);

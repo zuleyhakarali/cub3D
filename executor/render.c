@@ -12,6 +12,8 @@
 
 #include "../cub.h"
 
+#include "../cub.h"
+
 void	draw_floor_ceil(t_cub *game)
 {
 	int		x;
@@ -38,18 +40,17 @@ void	draw_floor_ceil(t_cub *game)
 
 void	render_frame(t_cub *game)
 {
-	int		x;
 	t_ray	ray;
+	t_wall	wall;
 
 	draw_floor_ceil(game);
-	x = 0;
-	while (x < WIN_WIDTH)
+	wall.screen_x = 0;
+	while (wall.screen_x < WIN_WIDTH)
 	{
-		init_ray(game, &ray, x);
-		perform_dda(game, &ray);
-		calc_perp_dist(&ray);
-		draw_wall_column(game, &ray, x);
-		x++;
+		init_ray(game, &ray, wall.screen_x);
+		cast_ray(game, &ray);
+		draw_wall(game, &ray, &wall);
+		wall.screen_x++;
 	}
 	mlx_put_image_to_window(game->mlx->mlx, game->mlx->window,
 		game->mlx->screen_b.img, 0, 0);

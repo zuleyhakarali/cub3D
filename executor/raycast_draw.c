@@ -23,34 +23,41 @@ static void	put_pixel(t_cub *game, int x, int y, int color)
 	*(int *)dst = color;
 }
 
-static void	get_draw_bounds(t_ray *ray)
+static void	set_wall_bounds(t_ray *ray, t_wall *wall)
 {
-	ray->line_height = (int)(WIN_HEIGHT / ray->perp_wall_dist);
-	ray->draw_start = -ray->line_height / 2 + WIN_HEIGHT / 2;
-	if (ray->draw_start < 0)
-		ray->draw_start = 0;
-	ray->draw_end = ray->line_height / 2 + WIN_HEIGHT / 2;
-	if (ray->draw_end >= WIN_HEIGHT)
-		ray->draw_end = WIN_HEIGHT - 1;
+	wall->height = (int)(WIN_HEIGHT / ray->distance);
+	wall->top = -wall->height / 2 + WIN_HEIGHT / 2;
+	if (wall->top < 0)
+		wall->top = 0;
+	wall->bottom = wall->height / 2 + WIN_HEIGHT / 2;
+	if (wall->bottom >= WIN_HEIGHT)
+		wall->bottom = WIN_HEIGHT - 1;
 }
 
-void	draw_wall_column(t_cub *game, t_ray *ray, int x)
+static double	texture_offset(t_wall *wall, double step)
 {
-	t_img	*tex;
+	int	clipped;
+
+	clipped = wall->top - (WIN_HEIGHT / 2 - wall->height / 2);
+	return (clipped * step);
+}
+
+void	draw_wall(t_cub *game, t_ray *ray, t_wall *wall)
+{
 	double	step;
 	double	tex_pos;
 	int		y;
 
-	get_draw_bounds(ray);
-	tex = select_texture(game, ray);
-	ray->tex_x = calc_tex_x(game, ray, tex);
-	step = (double)tex->heig / ray->line_height;
-	tex_pos = (ray->draw_start - WIN_HEIGHT / 2 + ray->line_height / 2) * step;
-	y = ray->draw_start;
-	while (y < ray->draw_end)
+	set_wall_bounds(ray, wall);
+	wall->tex = pick_texture(game, ray);
+	wall->tex_x = texture_column(game, ray, wall->tex);
+	step = (double)wall->tex->heig / wall->height;
+	tex_pos = texture_offset(wall, step);
+	y = wall->top;
+	while (y < wall->bottom)
 	{
-		put_pixel(game, x, y, get_tex_color(tex, ray->tex_x,
-				(int)tex_pos % tex->heig));
+		put_pixel(game, wall->screen_x, y, texture_pixel(wall->tex,
+				wall->tex_x, (int)tex_pos % wall->tex->heig));
 		tex_pos += step;
 		y++;
 	}
