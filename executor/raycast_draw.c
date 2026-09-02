@@ -25,13 +25,19 @@ static void	put_pixel(t_cub *game, int x, int y, int color)
 
 static void	set_wall_bounds(t_ray *ray, t_wall *wall)
 {
+	if (ray->distance < 0.0001)
+		ray->distance = 0.0001;
 	wall->height = (int)(WIN_HEIGHT / ray->distance);
+	if (wall->height > WIN_HEIGHT * 100 || wall->height < 0)
+		wall->height = WIN_HEIGHT * 100;
 	wall->top = -wall->height / 2 + WIN_HEIGHT / 2;
 	if (wall->top < 0)
 		wall->top = 0;
 	wall->bottom = wall->height / 2 + WIN_HEIGHT / 2;
 	if (wall->bottom >= WIN_HEIGHT)
 		wall->bottom = WIN_HEIGHT - 1;
+	if (wall->bottom <= wall->top)
+		wall->bottom = wall->top + 1;
 }
 
 static double	texture_offset(t_wall *wall, double step)
