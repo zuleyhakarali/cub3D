@@ -66,3 +66,36 @@ Graphics Library: https://harm-smits.github.io/42docs/libs/minilibx — Unoffici
 Core Explanation: https://hackmd.io/@nszl/H1LXByIE2 — Comprehensive guide on Raycasting logic and implementation details.
 
 Prior Curriculum Projects: Knowledge and structural patterns were adapted from our previous 42 project, so_long — specifically regarding MiniLibX initialization, window management, event handling hooks, parser and basic 2D map parsing strategies.
+
+Cub3D Explanation : https://devabdilah.medium.com/3d-ray-casting-game-with-cub3d-7a116376056a
+
+Executor Shematic: https://drive.google.com/drive/folders/1IMvo9bFC7staTYq7hgvpbmfqSZEuQTuk?usp=drive_link
+
+### AI Usage
+
+AI (Claude) was used in this project for the following tasks:
+
+**Understanding the raycasting mathematics**
+AI was used to derive and explain the formulas behind the raycasting
+— why `delta_dist` equals `1 / ray_dir`, why the perpendicular distance
+is used instead of the Euclidean one (and how the fisheye distortion appears without it),
+why `dir` must be a unit vector while `plane` sets the field of view, and why the texture
+column requires a mirroring correction. Each derivation was traced with concrete numerical
+values and checked against the running program.
+
+**Diagrams for the wall rendering pipeline**
+AI was asked to generate diagrams to make the pipeline visual: how the DDA algorithm steps
+from one grid boundary to the next, how the perpendicular distance keeps a flat wall from
+appearing curved, and how a hit position on a wall surface maps to a texture column and
+then to screen pixels.
+
+**Review after completion**
+Once the project was working, AI was used to review the codebase for memory leaks and edge
+cases, and to produce a consolidated visual and written reference of the whole engine for
+revision purposes.
+
+Visual Reference: [https://drive.google.com/drive/folders/1IMvo9bFC7staTYq7hgvpbmfqSZEuQTuk?usp=drive_link] — A set of diagrams covering the camera geometry, the DDA ray
+traversal and the wall rendering pipeline. Generated with AI during development as a
+study aid (see AI Usage below).
+
+AI was used to create the README.md file
