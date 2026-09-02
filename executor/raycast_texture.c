@@ -36,10 +36,6 @@ int	texture_column(t_cub *game, t_ray *ray, t_img *tex)
 		hit_pos = game->x + ray->distance * ray->dir_x;
 	hit_pos -= floor(hit_pos);
 	column = (int)(hit_pos * (double)tex->wid);
-	if (ray->hit_vertical && ray->dir_x > 0)
-		column = tex->wid - column - 1;
-	if (!ray->hit_vertical && ray->dir_y < 0)
-		column = tex->wid - column - 1;
 	return (column);
 }
 
