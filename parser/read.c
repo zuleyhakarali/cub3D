@@ -6,7 +6,7 @@
 /*   By: zkarali <zkarali@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/27 17:41:14 by zkarali           #+#    #+#             */
-/*   Updated: 2026/08/30 15:41:13 by zkarali          ###   ########.fr       */
+/*   Updated: 2026/09/02 15:34:46 by zkarali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void	reading(char **av, int size, t_cub *game)
 
 	fd = open(av[1], O_RDONLY);
 	if (fd == -1)
-		error("File could not be opened.", 0, game);
+		error("File could not be opened.", 1, game);
 	i = 0;
 	while (1)
 	{
