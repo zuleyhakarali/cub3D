@@ -142,7 +142,6 @@ t_img	*pick_texture(t_cub *game, t_ray *ray);
 int		texture_column(t_cub *game, t_ray *ray, t_img *tex);
 int		texture_pixel(t_img *tex, int tx, int ty);
 void	draw_wall(t_cub *game, t_ray *ray, t_wall *wall);
-void	draw_floor_ceil(t_cub *game);
 void	render_frame(t_cub *game);
 int		game_loop(void *param);
 int		key_press(int keycode, t_cub *game);

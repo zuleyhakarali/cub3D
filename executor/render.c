@@ -12,9 +12,7 @@
 
 #include "../cub.h"
 
-#include "../cub.h"
-
-void	draw_floor_ceil(t_cub *game)
+static void	draw_floor_ceil(t_cub *game)
 {
 	int		x;
 	int		y;
