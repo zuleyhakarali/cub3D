@@ -24,7 +24,16 @@ The goal of this project is to create a dynamic 3D graphical representation of a
 - `make` utility.
 - X11 graphics interface library (for MiniLibX on Linux).
 
-### Compilation
+
+
+### Installation & Compilation
+
+Clone MiniLibX (42 Paris Repository):
+
+```bash
+git clone git@github.com:42Paris/minilibx-linux.git minilibx-linux
+```
+
 To compile the executable, run the following command in the root directory:
 
 ```bash
